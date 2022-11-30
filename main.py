@@ -9,7 +9,10 @@ def congratulate_user():
 
 
 def is_game_over():
+    if errors == ERRORS_TO_LOSE:
+        print("You lost")
     return guessed == WORDS_TO_WIN or errors == ERRORS_TO_LOSE
+ 
 
 
 def guess_is_valid(candidate):
