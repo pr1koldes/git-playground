@@ -26,7 +26,7 @@ def guess_is_valid(candidate):
 
 guessed = 0
 errors = 0
-
+allG = []
 guesses = []
 
 WORDS_TO_WIN = 5
@@ -42,11 +42,15 @@ print(f"Your word is '{word}'")
 
 while not is_game_over():
     guess = input("Your next take: ")
-
+    if guess in allG:
+        print("Already used")
+        continue
     if not guess_is_valid(guess):
+        
         continue
 
     if guess in full_list:
+        allG.append(guess)
         guessed += 1
         guesses.append(guess)
         if guessed == WORDS_TO_WIN:
@@ -54,5 +58,6 @@ while not is_game_over():
             exit()
         print(f"That's right! {WORDS_TO_WIN - guessed} to go")
     else:
+        allG.append(guess)
         errors += 1
         print(f"Oops :( No such word, you have {ERRORS_TO_LOSE - errors} lives more")
